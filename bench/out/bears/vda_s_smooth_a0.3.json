@@ -1,0 +1,16 @@
+{
+ "model": "vda_s_smooth_a0.3",
+ "clip": "bears",
+ "frames": 90,
+ "vda_seconds": 2.3638025690000006,
+ "flow_seconds": 3.477701326999977,
+ "smooth_seconds": 2.4967167539999764,
+ "seconds": 8.338220649999954,
+ "fps": 10.793669750152329,
+ "peak_vram_gb": 3.172758016,
+ "out_size": [
+  90,
+  720,
+  1280
+ ]
+}

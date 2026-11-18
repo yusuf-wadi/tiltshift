@@ -1,0 +1,16 @@
+{
+ "model": "vda_s_smooth_a0.3",
+ "clip": "tokyo",
+ "frames": 150,
+ "vda_seconds": 3.734644684000017,
+ "flow_seconds": 5.321232799999962,
+ "smooth_seconds": 3.5491983559999767,
+ "seconds": 12.605075839999955,
+ "fps": 11.89996806873639,
+ "peak_vram_gb": 3.172758016,
+ "out_size": [
+  150,
+  720,
+  1280
+ ]
+}

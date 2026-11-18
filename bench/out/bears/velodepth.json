@@ -1,0 +1,17 @@
+{
+ "model": "velodepth",
+ "clip": "bears",
+ "frames": 90,
+ "frame_size": [
+  720,
+  1280
+ ],
+ "out_size": [
+  90,
+  720,
+  1280
+ ],
+ "seconds": 3.751101248999987,
+ "fps": 23.99295407555135,
+ "peak_vram_gb": 10.096505856
+}

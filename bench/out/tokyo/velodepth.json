@@ -1,0 +1,17 @@
+{
+ "model": "velodepth",
+ "clip": "tokyo",
+ "frames": 150,
+ "frame_size": [
+  720,
+  1280
+ ],
+ "out_size": [
+  150,
+  720,
+  1280
+ ],
+ "seconds": 7.28254222999999,
+ "fps": 20.597202908358582,
+ "peak_vram_gb": 15.728166912
+}

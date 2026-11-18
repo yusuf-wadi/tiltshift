@@ -1,0 +1,17 @@
+{
+ "model": "velodepth",
+ "clip": "rollercoaster",
+ "frames": 70,
+ "frame_size": [
+  540,
+  960
+ ],
+ "out_size": [
+  70,
+  540,
+  960
+ ],
+ "seconds": 2.655123830999969,
+ "fps": 26.36411875887412,
+ "peak_vram_gb": 6.615721472
+}

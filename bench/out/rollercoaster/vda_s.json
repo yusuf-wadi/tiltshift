@@ -1,0 +1,17 @@
+{
+ "model": "vda_s",
+ "clip": "rollercoaster",
+ "frames": 70,
+ "frame_size": [
+  540,
+  960
+ ],
+ "out_size": [
+  70,
+  540,
+  960
+ ],
+ "seconds": 1.8711227489999942,
+ "fps": 37.410693679722996,
+ "peak_vram_gb": 3.121214976
+}

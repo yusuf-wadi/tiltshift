@@ -1,0 +1,16 @@
+{
+ "model": "vda_s_smooth_a0.3",
+ "clip": "rollercoaster",
+ "frames": 70,
+ "vda_seconds": 1.8711227489999942,
+ "flow_seconds": 1.471589067000025,
+ "smooth_seconds": 1.0823568299999806,
+ "seconds": 4.425068646,
+ "fps": 15.818963636479596,
+ "peak_vram_gb": 3.121214976,
+ "out_size": [
+  70,
+  540,
+  960
+ ]
+}
