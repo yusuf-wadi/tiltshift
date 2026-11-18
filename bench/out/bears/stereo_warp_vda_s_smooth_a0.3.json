@@ -1,0 +1,14 @@
+{
+ "clip": "bears",
+ "method": "warp",
+ "depth": "vda_s_smooth_a0.3",
+ "baseline": 0.04,
+ "frames": 90,
+ "ms_per_frame": 0.9185379999507859,
+ "fps": 1088.68658678637,
+ "view_flicker": 0.39650458097457886,
+ "input_flicker_floor": 0.3133731186389923,
+ "excess_flicker": 0.08313146233558655,
+ "consistent_frac": 0.9896137152777778,
+ "input_consistent_frac": 0.9900998263888889
+}

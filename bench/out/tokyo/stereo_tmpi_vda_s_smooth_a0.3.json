@@ -1,0 +1,23 @@
+{
+ "clip": "tokyo",
+ "method": "tmpi",
+ "depth": "vda_s_smooth_a0.3",
+ "baseline": 0.04,
+ "frames": 150,
+ "ms_per_frame": 161.2176360000035,
+ "fps": 6.202795331895192,
+ "view_flicker": 3.230748176574707,
+ "input_flicker_floor": 3.3957748413085938,
+ "excess_flicker": -0.16502666473388672,
+ "consistent_frac": 0.9614290364583333,
+ "input_consistent_frac": 0.962255859375,
+ "tile_sz": 128,
+ "n_tiles": 60,
+ "work_size": [
+  576,
+  1024
+ ],
+ "plane_jitter_ratio": 1.3238939046859741,
+ "plane_change_mean": 0.002924642525613308,
+ "input_disp_change_mean": 0.001913473242893815
+}

@@ -1,0 +1,23 @@
+{
+ "clip": "bears",
+ "method": "tmpi",
+ "depth": "vda_s",
+ "baseline": 0.04,
+ "frames": 90,
+ "ms_per_frame": 160.4116299999987,
+ "fps": 6.233961963979844,
+ "view_flicker": 0.4137117564678192,
+ "input_flicker_floor": 0.3133731186389923,
+ "excess_flicker": 0.1003386378288269,
+ "consistent_frac": 0.9907877604166667,
+ "input_consistent_frac": 0.9900998263888889,
+ "tile_sz": 128,
+ "n_tiles": 60,
+ "work_size": [
+  576,
+  1024
+ ],
+ "plane_jitter_ratio": 1.2474695444107056,
+ "plane_change_mean": 0.0019628824666142464,
+ "input_disp_change_mean": 0.0013487313408404589
+}

@@ -1,0 +1,14 @@
+{
+ "clip": "rollercoaster",
+ "method": "warp",
+ "depth": "vda_s",
+ "baseline": 0.04,
+ "frames": 70,
+ "ms_per_frame": 0.5187229999989995,
+ "fps": 1927.8111824652633,
+ "view_flicker": 3.4723052978515625,
+ "input_flicker_floor": 2.3912243843078613,
+ "excess_flicker": 1.0810809135437012,
+ "consistent_frac": 0.8885069444444444,
+ "input_consistent_frac": 0.8901601080246914
+}

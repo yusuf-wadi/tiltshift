@@ -1,0 +1,23 @@
+{
+ "clip": "rollercoaster",
+ "method": "tmpi",
+ "depth": "vda_s_smooth_a0.3",
+ "baseline": 0.04,
+ "frames": 70,
+ "ms_per_frame": 131.35137099999383,
+ "fps": 7.613167585438045,
+ "view_flicker": 2.941899299621582,
+ "input_flicker_floor": 2.3912243843078613,
+ "excess_flicker": 0.5506749153137207,
+ "consistent_frac": 0.8887364969135803,
+ "input_consistent_frac": 0.8901601080246914,
+ "tile_sz": 128,
+ "n_tiles": 45,
+ "work_size": [
+  540,
+  960
+ ],
+ "plane_jitter_ratio": 1.4537851810455322,
+ "plane_change_mean": 0.012856214307248592,
+ "input_disp_change_mean": 0.00894943531602621
+}

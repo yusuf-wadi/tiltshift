@@ -1,0 +1,14 @@
+{
+ "clip": "tokyo",
+ "method": "warp",
+ "depth": "vda_s",
+ "baseline": 0.04,
+ "frames": 150,
+ "ms_per_frame": 0.8779599999684251,
+ "fps": 1139.0040548953984,
+ "view_flicker": 3.369882106781006,
+ "input_flicker_floor": 3.3957748413085938,
+ "excess_flicker": -0.02589273452758789,
+ "consistent_frac": 0.9596896701388888,
+ "input_consistent_frac": 0.962255859375
+}
