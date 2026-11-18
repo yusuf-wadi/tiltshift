@@ -28,8 +28,12 @@ Each runs on raw VDA-S and on the flow-smoothed VDA-S (α 0.3) from [bench-5080]
 - **Plane jitter ratio:** per tile, the mean frame-to-frame change of TMPI's plane depths divided by the mean change
   of the input disparity in that tile (median over tiles). 1 = planes move only as much as the depth does.
 
+> **Update (same day):** the ground-truth Sintel benchmark ([sintel-stereo](sintel-stereo.md)) refines read #1.
+> TMPI beats *naive backward warp* at edges, but a classical z-buffer splat + inpaint beats TMPI overall. TMPI only
+> wins inside the disoccluded gaps.
+
 ## Read
-1. **Edges and gap fill: TMPI wins clearly, by eye.** Naive warp shreds thin structure (rollercoaster beams torn into
+1. **Edges and gap fill: TMPI wins clearly against naive warp, by eye.** Naive warp shreds thin structure (rollercoaster beams torn into
    triangles) and doubles background objects (bears: duplicated Jeep wheels). TMPI keeps beams whole and fills
    behind edges plausibly, with slight softening. See `out/smoke_tmpi.png` and `out/<clip>/stereo_sheet.png`.
    There's no number here yet: these clips have no ground-truth right view.

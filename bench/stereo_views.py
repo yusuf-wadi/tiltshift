@@ -47,6 +47,30 @@ def warp_stereo(rgb, disp, baseline=0.04, f_ratio=0.58):
     return cv2.remap(rgb, gx + shift.astype(np.float32), gy, cv2.INTER_LINEAR, borderMode=cv2.BORDER_REPLICATE)
 
 
+def splat_stereo(rgb, disp, baseline=0.04, f_ratio=0.58, inpaint_radius=3):
+    """Classical DIBR: forward-splat each pixel to x - 0.58 W b disp with a z-buffer (nearer wins), then fill the
+    disoccluded holes with OpenCV Telea inpainting. Returns (view, hole_mask)."""
+    import cv2
+    H, W = disp.shape
+    shift = f_ratio * W * baseline * disp
+    ys, xs = np.mgrid[0:H, 0:W]
+    ys, xs, d = ys.ravel(), xs.ravel(), disp.ravel()
+    tx = np.floor(xs - shift.ravel()).astype(int)
+    # two-pixel splat closes rounding cracks; both copies share the source's depth key
+    ys2, xs2 = np.concatenate([ys, ys]), np.concatenate([xs, xs])
+    tx2, d2 = np.concatenate([tx, tx + 1]), np.concatenate([d, d])
+    order = np.argsort(d2, kind="stable")  # far first, near last -> near overwrites
+    ys2, xs2, tx2 = ys2[order], xs2[order], tx2[order]
+    ok = (tx2 >= 0) & (tx2 < W)
+    out = np.zeros_like(rgb)
+    hit = np.zeros((H, W), bool)
+    out[ys2[ok], tx2[ok]] = rgb[ys2[ok], xs2[ok]]
+    hit[ys2[ok], tx2[ok]] = True
+    holes = (~hit).astype(np.uint8)
+    view = cv2.inpaint(out, holes, inpaint_radius, cv2.INPAINT_TELEA) if holes.any() else out
+    return view, ~hit
+
+
 class TMPIStereo:
     def __init__(self, device="cuda", max_side=1024):
         sys.path.insert(0, str(TMPI_DIR))
