@@ -119,6 +119,9 @@ def main():
     import lpips
     lp = lpips.LPIPS(net="alex", verbose=False).cuda().eval()
     tm = TMPIStereo() if "tmpi" in methods else None
+    if any(m.startswith("iw3_") for m in methods):
+        from iw3_stereo import IW3Stereo
+        iw3 = {m: IW3Stereo(m[4:]) for m in methods if m.startswith("iw3_")}
     to_t = lambda x: torch.from_numpy(x).permute(2, 0, 1)[None].float().cuda() / 127.5 - 1
 
     recs = {f"{m}_{k}": [] for m in modes for k in methods}
@@ -137,9 +140,15 @@ def main():
             disp = np.clip(Dm / mx, 0, 1)
             for meth in methods:
                 prev_p = None
+                if meth.startswith("iw3_"):  # whole sequence at once (iw3 inpaint buffers frames)
+                    t0 = time.perf_counter()
+                    P_seq = iw3[meth].render_seq(L, disp, mx)
+                    iw3_ms = (time.perf_counter() - t0) * 1e3 / T
                 for t in range(T):
                     t0 = time.perf_counter()
-                    if meth == "identity":
+                    if meth.startswith("iw3_"):
+                        P = P_seq[t]
+                    elif meth == "identity":
                         P = L[t]
                     elif meth == "warp":
                         P = warp_stereo(L[t], disp[t], b)
@@ -147,7 +156,7 @@ def main():
                         P, _ = splat_stereo(L[t], disp[t], b)
                     else:
                         P = tm(L[t], disp[t], baselines=[b])[0]
-                    ms = (time.perf_counter() - t0) * 1e3
+                    ms = iw3_ms if meth.startswith("iw3_") else (time.perf_counter() - t0) * 1e3
                     rg, G = regions[t], R[t]
                     Pm = P.copy()
                     Pm[~rg["valid"]] = G[~rg["valid"]]
@@ -167,13 +176,15 @@ def main():
                     recs[f"{mode}_{meth}"].append(rec)
             print(seq, mode, flush=True)
 
-    summary = {}
+    sp = OUTD / "summary.json"
+    summary = json.loads(sp.read_text()) if sp.exists() and not args.seqs else {}  # merge with earlier runs
     for key, rs in recs.items():
         keys = ["psnr", "psnr_disocc", "psnr_edges", "ssim", "lpips", "temporal_err", "ms"]
         summary[key] = {k: float(np.nanmean([r[k] for r in rs if k in r])) for k in keys}
         summary[key]["frames"] = len(rs)
         (OUTD / f"{key}.json").write_text(json.dumps({"summary": summary[key], "frames": rs}))
-    (OUTD / "summary.json").write_text(json.dumps(summary, indent=1))
+    if not args.seqs:
+        sp.write_text(json.dumps(summary, indent=1))
     print(json.dumps(summary, indent=1))
 
 

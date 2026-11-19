@@ -5,7 +5,9 @@ import numpy as np
 
 from common import OUT
 
-KEYS = ["oracle_warp", "oracle_splat", "oracle_tmpi", "vda_s_warp", "vda_s_splat", "vda_s_tmpi"]
+BASE = ["warp", "splat", "tmpi", "iw3_forward_fill", "iw3_forward_inpaint", "iw3_row_flow_v3", "iw3_mlbw_l2",
+        "iw3_mlbw_l4", "iw3_mlbw_l2_inpaint"]
+KEYS = [f"{m}_{b}" for m in ("oracle", "vda_s") for b in BASE if (OUT / "sintel" / f"{m}_{b}.json").exists()]
 BINS = [(0, 0.02, "small (<2% disoccluded)"), (0.02, 0.06, "medium (2-6%)"), (0.06, 1.0, "large (>6%)")]
 
 fr = {k: json.loads((OUT / "sintel" / f"{k}.json").read_text())["frames"] for k in KEYS}
@@ -27,7 +29,7 @@ for name, v in res.items():
         print(f"\n{name}: {v['frames']} frames")
         for k in KEYS:
             x = v[k]
-            print(f"  {k:14s} psnr {x['psnr']:.2f} disocc {x['psnr_disocc']:.2f} edges {x['psnr_edges']:.2f} "
+            print(f"  {k:28s} psnr {x['psnr']:.2f} disocc {x['psnr_disocc']:.2f} edges {x['psnr_edges']:.2f} "
                   f"ssim {x['ssim']:.3f} lpips {x['lpips']:.3f} temporal {x['temporal_err']:.2f}")
     else:
         print(name, v)
